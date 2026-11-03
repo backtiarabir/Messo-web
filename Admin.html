@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Messo</title>
+    <link rel="stylesheet" href="Admin.css">
+</head>
+<body>
+
+    <!-- Admin Login Form Section -->
+    <section class="auth-container">
+        <div class="auth-form">
+            <h2>Admin Login</h2>
+            <form id="admin-login-form" action="admin_prosess.php" method="POST">
+                <div class="input-group">
+                    <label for="admin-username">Username</label>
+                    <input type="text" id="admin-username" name="admin-username" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="admin-password">Password</label>
+                    <input type="password" id="admin-password" name="admin-password" required>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+
+                <p>Back to <a href="login.html">User Login</a></p>
+            </form>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign Up — Messo</title>
+    <meta name="description" content="Create a Messo account to find trusted student accommodation." />
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <main class="auth-container" aria-labelledby="signup-heading">
+        <form id="signup-form" class="auth-form" action="signup_proses.php" method="POST" novalidate aria-describedby="signup-desc">
+            <h1 id="signup-heading">Create your Messo account</h1>
+            <p id="signup-desc" class="muted">Join to browse verified student accommodation and manage bookings.</p>
+
+            <label class="input-group">
+                <span class="label-text">Username</span>
+                <input name="username" id="username" type="text" autocomplete="username" required minlength="3" placeholder="Choose a username">
+            </label>
+
+            <label class="input-group">
+                <span class="label-text">Email</span>
+                <input name="email" id="email" type="email" autocomplete="email" required placeholder="you@example.com">
+            </label>
+
+            <fieldset class="input-group password-group" aria-describedby="pwd-help">
+                <legend class="label-text">Password</legend>
+                <div class="password-row">
+                    <input name="password" id="password" type="password" autocomplete="new-password" required minlength="8" placeholder="Min. 8 characters">
+                    <button type="button" id="toggle-pwd" class="icon-btn" aria-label="Show password">Show</button>
+                </div>
+
+                <div id="pwd-meter" class="pwd-meter" aria-hidden="true">
+                    <span class="pwd-bar"></span>
+                </div>
+                <p id="pwd-help" class="muted small">Use at least 8 characters — include letters & numbers for stronger security.</p>
+            </fieldset>
+
+            <label class="input-group">
+                <span class="label-text">Confirm password</span>
+                <input name="confirm_password" id="confirm-password" type="password" autocomplete="new-password" required minlength="8" placeholder="Repeat password">
+            </label>
+
+            <div id="form-error" class="form-error" role="status" aria-live="polite"></div>
+
+            <button type="submit" class="btn">Create account</button>
+
+            <p class="muted small">By creating an account you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+
+            <hr class="divider" />
+
+            <p class="muted">Already a member? <a href="login.html">Log in</a></p>
+        </form>
+    </main>
+
+    <script>
+    (function(){
+        const form = document.getElementById('signup-form');
+        const pwd = document.getElementById('password');
+        const confirm = document.getElementById('confirm-password');
+        const errorEl = document.getElementById('form-error');
+        const toggle = document.getElementById('toggle-pwd');
+        const meter = document.getElementById('pwd-meter');
+        const bar = meter.querySelector('.pwd-bar');
+
+        function strengthScore(value){
+            let score = 0;
+            if (!value) return 0;
+            if (value.length >= 8) score++;
+            if (/[A-Z]/.test(value)) score++;
+            if (/[0-9]/.test(value)) score++;
+            if (/[^A-Za-z0-9]/.test(value)) score++;
+            return score; // 0..4
+        }
+
+        function updateMeter(){
+            const score = strengthScore(pwd.value);
+            bar.style.width = (score / 4 * 100) + '%';
+            bar.style.background = score <= 1 ? '#e74c3c' : score === 2 ? '#f39c12' : score === 3 ? '#2ecc71' : '#1abc9c';
+            meter.setAttribute('aria-hidden', false);
+        }
+
+        pwd.addEventListener('input', () => {
+            updateMeter();
+            errorEl.textContent = '';
+        });
+
+        toggle.addEventListener('click', () => {
+            const showing = pwd.type === 'text';
+            pwd.type = showing ? 'password' : 'text';
+            toggle.textContent = showing ? 'Show' : 'Hide';
+            toggle.setAttribute('aria-pressed', String(!showing));
+        });
+
+        form.addEventListener('submit', (e) => {
+            errorEl.textContent = '';
+            if (pwd.value.length < 8) {
+                e.preventDefault();
+                errorEl.textContent = 'Password must be at least 8 characters.';
+                pwd.focus();
+                return;
+            }
+            if (pwd.value !== confirm.value) {
+                e.preventDefault();
+                errorEl.textContent = 'Passwords do not match.';
+                confirm.focus();
+                return;
+            }
+            // allow submit — server-side validation remains required
+        });
+    })();
+    </script>
+</body>
+</html>

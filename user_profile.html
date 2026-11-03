@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>User Dashboard — Messo</title>
+  <meta name="description" content="Student dashboard — payments, invoices and profile information.">
+  <link rel="stylesheet" href="user_profile.css">
+</head>
+<body>
+  <main class="page" id="main">
+    <header class="profile-header" role="region" aria-label="Profile header">
+      <img class="avatar" src="https://via.placeholder.com/160" alt="Profile photo of John Doe" width="160" height="160">
+      <div class="profile-meta">
+        <h1 class="name">Touhid</h1>
+        <p class="role">Student</p>
+        <dl class="contact">
+          <div>
+            <dt>Email</dt>
+            <dd>Touhid4521@email.com</dd>
+          </div>
+          <div>
+            <dt>Phone</dt>
+            <dd>+019123456789</dd>
+          </div>
+        </dl>
+      </div>
+      <div class="profile-actions">
+        <button class="btn btn-outline" id="editProfile">Edit profile</button>
+        <button class="btn btn-primary" id="payNow">Pay now</button>
+      </div>
+    </header>
+
+    <section class="summary-grid" aria-label="Financial summary">
+      <article class="card">
+        <h2 class="card-title">Total fees</h2>
+        <p class="card-value" id="totalFees" data-value="500">৳500</p>
+      </article>
+
+      <article class="card">
+        <h2 class="card-title">Monthly payment</h2>
+        <p class="card-value" id="monthlyPayment" data-value="50">৳50</p>
+      </article>
+
+      <article class="card">
+        <h2 class="card-title">Total paid</h2>
+        <p class="card-value" id="totalPaid" data-value="250">৳250</p>
+      </article>
+
+      <article class="card card-urgent">
+        <h2 class="card-title">Outstanding dues</h2>
+        <p class="card-value" id="outstandingDues">৳0</p>
+        <p class="next-due">Next due: <time datetime="2025-08-15">15 Aug 2025</time></p>
+      </article>
+    </section>
+
+    <section class="payment-history" aria-labelledby="historyHeading">
+      <div class="section-head">
+        <h2 id="historyHeading">Payment history</h2>
+        <div class="history-actions">
+          <button class="btn btn-ghost" id="downloadInvoice">Download invoice</button>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table" aria-describedby="historyDesc">
+          <caption id="historyDesc" class="visually-hidden">Recent payments and statuses</caption>
+          <thead>
+            <tr>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Status</th>
+              <th scope="col">Method</th>
+            </tr>
+          </thead>
+          <tbody id="paymentsTable">
+            <tr>
+              <td><time datetime="2025-01-01">01 Jan 2025</time></td>
+              <td data-amount="100">৳100</td>
+              <td><span class="badge badge-success">Paid</span></td>
+              <td>Credit card</td>
+            </tr>
+            <tr>
+              <td><time datetime="2025-02-01">01 Feb 2025</time></td>
+              <td data-amount="50">৳50</td>
+              <td><span class="badge badge-success">Paid</span></td>
+              <td>Debit card</td>
+            </tr>
+            <tr>
+              <td><time datetime="2025-03-01">01 Mar 2025</time></td>
+              <td data-amount="50">৳50</td>
+              <td><span class="badge badge-pending">Pending</span></td>
+              <td>Cash</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  </main>
+
+  <script>
+  (function(){
+    const fmt = (n) => '৳' + Number(n).toLocaleString('en-BD');
+    const totalFeesEl = document.getElementById('totalFees');
+    const totalPaidEl = document.getElementById('totalPaid');
+    const outstandingEl = document.getElementById('outstandingDues');
+    const paymentsTable = document.getElementById('paymentsTable');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.hidden = false;
+      toast.classList.add('show');
+      setTimeout(()=> { toast.classList.remove('show'); toast.hidden = true; }, 2500);
+    }
+
+    function calculateOutstanding(){
+      const total = Number(totalFeesEl.dataset.value || 0);
+      const paid = Number(totalPaidEl.dataset.value || 0);
+      const outstanding = Math.max(0, total - paid);
+      outstandingEl.textContent = fmt(outstanding);
+      outstandingEl.dataset.value = outstanding;
+    }
+
+    // calculate based on table amounts if data present
+    function recalcFromTable(){
+      const rows = Array.from(paymentsTable.querySelectorAll('tbody tr, tr'));
+      let paidSum = 0;
+      rows.forEach(r => {
+        const status = r.querySelector('.badge')?.textContent?.trim().toLowerCase();
+        const amtCell = r.querySelector('[data-amount]');
+        if (!amtCell) return;
+        const amt = Number(amtCell.dataset.amount || 0);
+        if (status === 'paid') paidSum += amt;
+      });
+      totalPaidEl.textContent = fmt(paidSum);
+      totalPaidEl.dataset.value = paidSum;
+      calculateOutstanding();
+    }
+
+    // actions
+    document.getElementById('payNow').addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('Redirecting to secure payment gateway...');
+      // realistic implementation: window.location = paymentUrl;
+    });
+
+    document.getElementById('downloadInvoice').addEventListener('click', (e) => {
+      e.preventDefault();
+      showToast('Preparing invoice...');
+      setTimeout(() => showToast('Invoice downloaded'), 800);
+      // realistic: build PDF and trigger download
+    });
+
+    // initial calculation
+    calculateOutstanding();
+    recalcFromTable();
+
+    // expose for debugging (optional)
+    window._messo = { calculateOutstanding, recalcFromTable, showToast };
+  })();
+  </script>
+</body>
+</html>

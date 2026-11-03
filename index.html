@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Messo — Find Your Trusted Second Home</title>
+    <meta name="description" content="Messo helps students discover trusted, affordable accommodation — browse verified rooms and student essentials.">
+    <link rel="stylesheet" href="style-2.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="Primary">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-brand" aria-label="Messo home">
+                    <img src="CSS/Photos/logo(1)(1).png" alt="Messo logo" class="logo"> MESSO
+                </a>
+
+                <!-- Hamburger Menu Button -->
+                <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primary-nav" aria-label="Toggle navigation">
+                    <span class="menu-icon"></span>
+                </button>
+
+                <!-- Navbar Links -->
+                <ul id="primary-nav" class="navbar-links" role="menubar">
+                    <li role="none"><a role="menuitem" href="index.html" aria-current="page">Home</a></li>
+                    <li role="none"><a role="menuitem" href="About_us.html">About</a></li>
+                    <li role="none"><a role="menuitem" href="Room.html">Rooms</a></li>
+                    <li role="none"><a role="menuitem" href="Store.html">Store</a></li>
+                    <li role="none"><a role="menuitem" href="#">Contact</a></li>
+                    <li role="none"><a role="menuitem" href="Login.html">Login</a></li>
+                    <li role="none"><a role="menuitem" href="Admin.html">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-label="Intro">
+            <div class="hero-overlay container">
+                <h1>Find Your Trusted Second Home</h1>
+                <p>Explore verified student accommodation near your campus — safe, affordable and easy to book.</p>
+                <div class="cta-buttons">
+                    <a class="cta-button" href="Room.html">See Rooms</a>
+                    <a class="cta-button secondary" href="About_us.html">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-filter container" aria-label="Search and filters">
+            <form class="search-form" role="search" action="Room.html" method="get">
+                <label for="search-bar" class="visually-hidden">Search by location</label>
+                <input id="search-bar" name="q" type="search" placeholder="Search by city, university or area" />
+                <button type="submit" class="cta-button">Search</button>
+            </form>
+
+            <aside class="filter-sidebar" aria-label="Filters">
+                <label for="location">Location</label>
+                <select id="location" name="location">
+                    <option value="dhaka">Dhaka</option>
+                    <option value="rajshahi">Rajshahi</option>
+                    <option value="sylhet">Sylhet</option>
+                    <option value="khulna">Khulna</option>
+                    <option value="chattogram">Chattogram</option>
+                    <option value="barishal">Barishal</option>
+                </select>
+            </aside>
+        </section>
+
+        <section class="featured-rooms container" aria-labelledby="featured-heading">
+            <h2 id="featured-heading">Featured Rooms</h2>
+            <div class="room-grid" role="list">
+                <article class="room-card" role="listitem">
+                    <img src="images/room1.jpg" alt="Single premium room with study desk" loading="lazy">
+                    <h3>Premium Room</h3>
+                    <p class="price">3,200 tk / month</p>
+                    <a class="view-details" href="Room.html#premium">View details</a>
+                </article>
+                <!-- Add more room cards here -->
+            </div>
+        </section>
+
+        <section class="store container" aria-labelledby="store-heading">
+            <h2 id="store-heading">Student Essentials Store</h2>
+            <div class="product-grid" role="list">
+                <article class="product-card" role="listitem">
+                    <img src="images/product1.jpg" alt="Bed sheet set" loading="lazy">
+                    <h3>Bed Sheet</h3>
+                    <p class="price">400 tk</p>
+                    <button type="button" class="add-cart">Add to cart</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <ul class="footer-links" aria-label="Legal">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Sitemap</a></li>
+            </ul>
+            <div class="social-media" aria-label="Social links">
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="nav-toggle.js"></script>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Messo — Find Your Trusted Second Home</title>
+    <meta name="description" content="Messo helps students discover trusted, affordable accommodation — browse verified rooms and student essentials.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar" role="navigation" aria-label="Primary">
+            <div class="navbar-container">
+                <a href="index.html" class="navbar-brand" aria-label="Messo home">
+                    <img src="CSS/Photos/logo(1)(1).png" alt="Messo logo" class="logo"> MESSO
+                </a>
+
+                <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+
+                <ul id="primary-nav" class="navbar-links" role="menubar">
+                    <li role="none"><a role="menuitem" href="index.html" aria-current="page">Home</a></li>
+                    <li role="none"><a role="menuitem" href="About_us.html">About</a></li>
+                    <li role="none"><a role="menuitem" href="Room.html">Rooms</a></li>
+                    <li role="none"><a role="menuitem" href="Store.html">Store</a></li>
+                    <li role="none"><a role="menuitem" href="#">Contact</a></li>
+                    <li role="none"><a role="menuitem" href="Login.html">Login</a></li>
+                    <li role="none"><a role="menuitem" href="Admin.html">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-label="Intro">
+            <div class="hero-overlay container">
+                <h1>Find Your Trusted Second Home</h1>
+                <p>Explore verified student accommodation near your campus — safe, affordable and easy to book.</p>
+                <div class="cta-buttons">
+                    <a class="cta-button" href="Room.html">See Rooms</a>
+                    <a class="cta-button secondary" href="About_us.html">Learn More</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="search-filter container" aria-label="Search and filters">
+            <form class="search-form" role="search" action="Room.html" method="get">
+                <label for="search-bar" class="visually-hidden">Search by location</label>
+                <input id="search-bar" name="q" type="search" placeholder="Search by city, university or area" />
+                <button type="submit" class="cta-button">Search</button>
+            </form>
+
+            <aside class="filter-sidebar" aria-label="Filters">
+                <label for="location">Location</label>
+                <select id="location" name="location">
+                    <option value="dhaka">Dhaka</option>
+                    <option value="rajshahi">Rajshahi</option>
+                    <option value="sylhet">Sylhet</option>
+                    <option value="khulna">Khulna</option>
+                    <option value="chattogram">Chattogram</option>
+                    <option value="barishal">Barishal</option>
+                </select>
+            </aside>
+        </section>
+
+        <section class="featured-rooms container" aria-labelledby="featured-heading">
+            <h2 id="featured-heading">Featured Rooms</h2>
+            <div class="room-grid" role="list">
+                <article class="room-card" role="listitem">
+                    <img src="images/room1.jpg" alt="Single premium room with study desk" loading="lazy">
+                    <h3>Premium Room</h3>
+                    <p class="price">3,200 tk / month</p>
+                    <a class="view-details" href="Room.html#premium">View details</a>
+                </article>
+                <!-- Add more room cards here -->
+            <!-- </div>
+        </section>
+
+        <section class="store container" aria-labelledby="store-heading">
+            <h2 id="store-heading">Student Essentials Store</h2>
+            <div class="product-grid" role="list">
+                <article class="product-card" role="listitem">
+                    <img src="images/product1.jpg" alt="Bed sheet set" loading="lazy">
+                    <h3>Bed Sheet</h3>
+                    <p class="price">400 tk</p>
+                    <button type="button" class="add-cart">Add to cart</button>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <ul class="footer-links" aria-label="Legal">
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms</a></li>
+                <li><a href="#">Sitemap</a></li>
+            </ul>
+            <div class="social-media" aria-label="Social links">
+                <a href="#" aria-label="Facebook">Facebook</a>
+                <a href="#" aria-label="Instagram">Instagram</a>
+                <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            </div>
+        </div>
+    </footer> -->
+
+    <!-- <script defer>
+    // small nav toggle
+    (function(){
+        const nav = document.querySelector('.navbar');
+        const btn = document.getElementById('menuToggle');
+        const list = document.getElementById('primary-nav');
+        btn && btn.addEventListener('click', () => {
+            const open = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(open));
+        });
+    })();
+    </script> -->
+    <!-- <script src="script.js"></script>
+</body>
+
+</html> --> -->

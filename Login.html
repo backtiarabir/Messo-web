@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Login — Messo</title>
+    <meta name="description" content="Sign in to your Messo account to manage bookings and view verified accommodation.">
+    <link rel="stylesheet" href="From.css">
+</head>
+<body>
+    <main class="auth-container" aria-labelledby="login-heading">
+        <form class="auth-form" id="login-form" action="login_proses.php" method="POST" novalidate aria-describedby="login-desc" role="form">
+            <div class="brand">
+                <img src="CSS/Photos/logo(1)(1).png" alt="Messo logo" class="logo" />
+                <div>
+                    <h1 id="login-heading">Welcome back</h1>
+                    <p id="login-desc" class="muted">Sign in to continue to your dashboard</p>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="username">Username or email</label>
+                <input id="username" name="username" type="text" autocomplete="username" required autofocus />
+            </div>
+
+            <fieldset class="input-group" aria-hidden="false">
+                <label for="password">Password</label>
+                <div class="password-row">
+                    <input id="password" name="password" type="password" autocomplete="current-password" required />
+                    <button type="button" id="togglePwd" class="icon-btn" aria-pressed="false" aria-label="Show password">Show</button>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <label class="checkbox"><input type="checkbox" name="remember" /> Remember me</label>
+                <a href="forgot-password.html">Forgot?</a>
+            </div>
+
+            <div id="form-error" class="form-error" role="status" aria-live="polite"></div>
+
+            <button class="btn" type="submit">Sign in</button>
+
+            <div class="divider" role="separator" aria-hidden="true"></div>
+
+            <p class="muted">Don't have an account? <a href="Signup.html">Create one</a></p>
+        </form>
+    </main>
+
+    <script>
+    (function(){
+        const toggle = document.getElementById('togglePwd');
+        const pwd = document.getElementById('password');
+        const form = document.getElementById('login-form');
+        const errorEl = document.getElementById('form-error');
+
+        toggle.addEventListener('click', () => {
+            const isText = pwd.type === 'text';
+            pwd.type = isText ? 'password' : 'text';
+            toggle.textContent = isText ? 'Show' : 'Hide';
+            toggle.setAttribute('aria-pressed', String(!isText));
+        });
+
+        form.addEventListener('submit', (e) => {
+            errorEl.textContent = '';
+            if (!pwd.value || !document.getElementById('username').value) {
+                e.preventDefault();
+                errorEl.textContent = 'Please enter your username and password.';
+            }
+        });
+    })();
+    </script>
+</body>
+</html>
